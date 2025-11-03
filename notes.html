@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes | Neeti’s Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="profile">
+        <div class="avatar">📝</div>
+        <div class="welcome">
+          <h3>Your Notes</h3>
+          <p>Write, reflect, and remember</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="todo.html">To-Do</a>
+        <a href="progress.html">Progress</a>
+      </nav>
+    </div>
+
+    <div class="notes-input">
+      <textarea id="noteInput" placeholder="Write your note here..."></textarea>
+      <button class="todo-add-btn" onclick="addNote()">Add Note</button>
+    </div>
+
+    <div id="notesList" class="notes-list"></div>
+  </div>
+
+  <footer>Designed by Neeti Parmar</footer>
+
+  <script>
+    let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+    function addNote() {
+      const text = document.getElementById('noteInput').value.trim();
+      if (text === '') return alert('Please write something 🌿');
+
+      const note = {
+        id: Date.now(),
+        text,
+        createdAt: new Date().toLocaleString()
+      };
+      notes.push(note);
+      saveNotes();
+      renderNotes();
+      document.getElementById('noteInput').value = '';
+    }
+
+    function deleteNote(id) {
+      notes = notes.filter(n => n.id !== id);
+      saveNotes();
+      renderNotes();
+    }
+
+    function editNote(id) {
+      const note = notes.find(n => n.id === id);
+      const newText = prompt('Edit your note:', note.text);
+      if (newText !== null) {
+        note.text = newText.trim();
+        saveNotes();
+        renderNotes();
+      }
+    }
+
+    function saveNotes() {
+      localStorage.setItem('notes', JSON.stringify(notes));
+    }
+
+    function renderNotes() {
+      const list = document.getElementById('notesList');
+      list.innerHTML = '';
+
+      if (notes.length === 0) {
+        list.innerHTML = '<p style="text-align:center;opacity:0.6;">No notes yet 🪶</p>';
+        return;
+      }
+
+      notes.forEach(note => {
+        const item = document.createElement('div');
+        item.classList.add('note-item');
+        item.innerHTML = `
+          <div class="note-text">${note.text}</div>
+          <div class="note-footer">
+            <small>${note.createdAt}</small>
+            <div class="note-actions">
+              <button class="icon-btn" onclick="editNote(${note.id})">✏️</button>
+              <button class="icon-btn" onclick="deleteNote(${note.id})">🗑️</button>
+            </div>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    renderNotes();
+  </script>
+</body>
+</html>

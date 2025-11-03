@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Tracker | Neeti’s Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="profile">
+        <div class="avatar"></div>
+        <div class="welcome">
+          <h3>Your Progress</h3>
+          <p>Track how consistent you are </p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="todo.html">To-Do List</a>
+        <a href="notes.html">Notes</a>
+      </nav>
+    </div>
+
+    <div class="progress-summary">
+      <h2 id="summaryText">Loading...</h2>
+      <canvas id="progressChart" width="350" height="350"></canvas>
+    </div>
+  </div>
+
+  <footer>Designed by Neeti Parmar</footer>
+
+  <script>
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const total = tasks.length;
+    const completed = tasks.filter(t => t.completed).length;
+    const pending = total - completed;
+
+    const summary = document.getElementById('summaryText');
+    summary.textContent = total === 0
+      ? "No tasks yet — add something in your To-Do 🌸"
+      : `You’ve completed ${completed} out of ${total} tasks (${((completed / total) * 100).toFixed(0)}%)! `;
+
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Completed', 'Pending'],
+        datasets: [{
+          data: [completed, pending],
+          backgroundColor: ['#a0d995', '#f7d9d9'],
+          borderWidth: 2,
+          borderColor: '#fff'
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: { color: '#4a4a4a', font: { size: 14 } },
+            position: 'bottom'
+          }
+        },
+        cutout: '70%'
+      }
+    });
+  </script>
+</body>
+</html>
