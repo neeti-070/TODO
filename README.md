@@ -1,31 +1,36 @@
-# To-Do Dashboard
+# TaskFlow
 
-A minimal, pastel-themed productivity dashboard by **Neeti Parmar** 
-Designed to help you stay organized, calm, and creative — even on your busiest days   
+**TaskFlow** is a minimal and responsive productivity dashboard designed to help users manage their daily tasks, notes, and progress efficiently.  
+It emphasizes simplicity, clarity, and a calm interface to support focus and consistency.
 
 ---
 
 ## Features
--  To-Do List with add, edit, delete & mark-as-done options  
--  Deadline picker (date & time)  
--  Local storage support (works fully offline)  
--  Notes section with autosave  
--  Progress Tracker with live charts  
--  aesthetic (inspired by Notion & Apple Notes)
+
+- **Task Management:** Add, edit, delete, and mark tasks as completed  
+- **Deadlines:** Select date and time for each task  
+- **Notes Section:** Create and auto-save notes using local storage  
+- **Progress Tracker:** View completion stats through dynamic charts (Chart.js)  
+- **Offline Support:** Fully functional without internet access  
+- **Clean UI:** Subtle pastel palette and smooth user interactions  
 
 ---
 
-##  Tech Stack
+## Tech Stack
+
 - HTML  
-- CSS (glassmorphism & pastel gradients)  
-- JavaScript (DOM + localStorage)  
-- Chart.js (for progress charts)
+- CSS  
+- JavaScript  
+- Chart.js  
 
 ---
 
-##  Live Demo
-> 🔗 [**View Live Project**](https://neeti-070.github.io/TODO/)
+## Live Project
+
+🔗 [View Live Site](https://neeti-070.github.io/TODO/)  
+📂 [GitHub Repository](https://github.com/neeti-070/TODO)
 
 ---
 
 ## Folder Structure
+
