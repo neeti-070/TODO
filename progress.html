@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress Tracker | Neeti’s Dashboard</title>
+  <title>Progress Tracker | Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -40,7 +40,7 @@
 
     const summary = document.getElementById('summaryText');
     summary.textContent = total === 0
-      ? "No tasks yet — add something in your To-Do 🌸"
+      ? "No tasks yet — add something in your To-Do "
       : `You’ve completed ${completed} out of ${total} tasks (${((completed / total) * 100).toFixed(0)}%)! `;
 
     const ctx = document.getElementById('progressChart').getContext('2d');
